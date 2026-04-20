@@ -55,7 +55,10 @@ body {
     background: linear-gradient(135deg, #0d0d1a 0%, #13132a 50%, #1a0a2e 100%);
     min-height: 100vh;
 }
-
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
 
 
 /* ── Floating particles ────────────────────────────────────────── */
