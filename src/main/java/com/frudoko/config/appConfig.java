@@ -17,7 +17,9 @@ import org.thymeleaf.templatemode.TemplateMode;
 
 import javax.sql.DataSource;
 import java.util.Properties;
-
+/**
+ represents the servlet 
+ */
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement

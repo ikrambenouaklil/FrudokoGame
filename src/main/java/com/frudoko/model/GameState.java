@@ -1,8 +1,5 @@
 package com.frudoko.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,9 +12,7 @@ import java.time.LocalDateTime;
  *
  * gridState and solution are stored as JSON: [[1,2,3,4],[...],...]
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
 @Table(name = "game_states")
 public class GameState {
@@ -26,7 +21,7 @@ public class GameState {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    /** References users2.id */
+    /** References users.id */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -70,4 +65,84 @@ public class GameState {
         IN_PROGRESS, WON, LOST
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    public String getGridState() {
+        return gridState;
+    }
+
+    public void setGridState(String gridState) {
+        this.gridState = gridState;
+    }
+
+    public String getSolution() {
+        return solution;
+    }
+
+    public void setSolution(String solution) {
+        this.solution = solution;
+    }
+
+    public long getTimeElapsed() {
+        return timeElapsed;
+    }
+
+    public void setTimeElapsed(long timeElapsed) {
+        this.timeElapsed = timeElapsed;
+    }
+
+    public GameStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(GameStatus status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getInitialPuzzle() {
+        return initialPuzzle;
+    }
+
+    public void setInitialPuzzle(String initialPuzzle) {
+        this.initialPuzzle = initialPuzzle;
+    }
 }

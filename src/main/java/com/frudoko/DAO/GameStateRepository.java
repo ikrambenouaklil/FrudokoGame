@@ -1,4 +1,4 @@
-package com.frudoko.Repository;
+package com.frudoko.DAO;
 
 import com.frudoko.model.GameState;
 import org.springframework.data.jpa.repository.JpaRepository;

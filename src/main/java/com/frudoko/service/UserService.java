@@ -1,6 +1,7 @@
 package com.frudoko.service;
 
-import com.frudoko.Repository.UserRepository;
+import com.frudoko.DAO.UserDAO;
+
 import com.frudoko.model.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,15 @@ public class UserService {
     private final BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder(12);
 
     @Autowired
-    UserRepository repo ;
+    UserDAO repo;
 
     
     // register
 
     public boolean register (User user )
     {
-        if ( repo.existsByEmail(user.getEmail() )
-                || repo.existsByUserName(user.getUserName())) return false ;
+        if ( repo.findByEmail(user.getEmail()) != null
+                || repo.existsByUserName(user.getUserName())) return false;
         // hash the pswd 
         user.setPassword(bCrypt.encode(user.getPassword()));
         
@@ -65,7 +66,7 @@ public class UserService {
 
     public boolean edit (User user){
 
-        User existing = repo.findById(user.getId()).orElse(null);
+        User existing = repo.findById(user.getId());
 
 
         if (existing ==null) return false ;
@@ -91,7 +92,7 @@ public boolean changePassword(int userId , String newRawPassword ){
         if(!repo.existsById(id)) return false ; 
         repo.deleteById(id);
         return true ; 
-       
+
     }
 
 

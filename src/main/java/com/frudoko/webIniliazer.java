@@ -4,8 +4,7 @@ import com.frudoko.config.appConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
- * Spring MVC bootstrapper — registers the DispatcherServlet.
- * This file is UNCHANGED from the original project.
+ represents the web.xml
  */
 public class webIniliazer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
