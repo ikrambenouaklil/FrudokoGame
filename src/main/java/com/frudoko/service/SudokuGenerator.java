@@ -17,7 +17,7 @@ import java.util.*;
  */
 @Component
 public class SudokuGenerator {
-//
+
     private static final int SIZE = 4;
 
     // Cells removed per difficulty level
