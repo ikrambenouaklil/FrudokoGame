@@ -1,5 +1,6 @@
 package com.frudoko.model;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,14 +23,16 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "user_name")
+    @Column(name = "user_name",nullable = false, unique = true)
     private String userName;
-
+    @Column(nullable = false)
     private String password;
-
+    
     @JsonManagedReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Score> scores;
-    /** Last played level: 0=none, 1=EASY, 2=MEDIUM, 3=HARD */
-    private int currentLevel;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<GameState> gameStates;
+  
 }

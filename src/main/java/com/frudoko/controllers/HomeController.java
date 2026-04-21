@@ -2,6 +2,7 @@ package com.frudoko.controllers;
 
 
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
@@ -25,7 +26,7 @@ public class HomeController {
         }
         return "home";
     }
-//
+
 //    /** Global scoreboard — top 20 scores */
 //    @GetMapping("/scoreboard")
 //    public String scoreboard(Model model) {

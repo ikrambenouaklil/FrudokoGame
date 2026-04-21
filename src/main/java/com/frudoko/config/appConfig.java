@@ -3,6 +3,9 @@ package com.frudoko.config;
 import org.springframework.context.annotation.*;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.*;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.*;
 
@@ -76,26 +79,29 @@ public class appConfig implements WebMvcConfigurer {
         ds.setPassword("260802");
         return ds;
     }
-
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sf = new LocalSessionFactoryBean();
-        sf.setDataSource(dataSource());
-        sf.setPackagesToScan("com.appGame.model");
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean em =
+                new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(dataSource());
+        em.setPackagesToScan("com.frudoko.model");
+
+        HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+        em.setJpaVendorAdapter(adapter);
 
         Properties props = new Properties();
         props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         props.setProperty("hibernate.hbm2ddl.auto", "update");
         props.setProperty("hibernate.show_sql", "true");
+        em.setJpaProperties(props);
 
-        sf.setHibernateProperties(props);
-        return sf;
+        return em;
     }
 
     @Bean
-    public HibernateTransactionManager transactionManager() {
-        HibernateTransactionManager tm = new HibernateTransactionManager();
-        tm.setSessionFactory(sessionFactory().getObject());
+    public JpaTransactionManager transactionManager() {
+        JpaTransactionManager tm = new JpaTransactionManager();
+        tm.setEntityManagerFactory(entityManagerFactory().getObject());
         return tm;
     }
 }
