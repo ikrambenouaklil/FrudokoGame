@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ScoreRepository extends JpaRepository<Score, Integer> {
+public interface ScoreDAO extends JpaRepository<Score, Integer> {
 
     @Query("""
         SELECT s.user
