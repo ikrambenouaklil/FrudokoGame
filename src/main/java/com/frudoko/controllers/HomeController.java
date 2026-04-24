@@ -1,8 +1,10 @@
 package com.frudoko.controllers;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
@@ -27,7 +29,7 @@ public class HomeController {
         return "home";
     }
 
-//    /** Global scoreboard — top 20 scores */
+    /** Global scoreboard — top 20 scores */
 //    @GetMapping("/scoreboard")
 //    public String scoreboard(Model model) {
 //        model.addAttribute("scores", gameService.getTopScores(20));

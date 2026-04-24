@@ -35,10 +35,12 @@ public class GameStateDAOImpl implements GameStateDAO {
     @Override
     public GameState findByUserIdAndStatus(int userId, GameState.GameStatus status) {
         String jpql =
-        "SELECT g FROM GameState g WHERE g.user.id = :userId AND g.status = :status";
+                "SELECT g FROM GameState g WHERE g.user.id = :userId AND g.status = :status " +
+                        "ORDER BY g.updatedAt DESC";
         return em.createQuery(jpql,GameState.class)
                 .setParameter("userId", userId)
                 .setParameter("status",status)
+                .setMaxResults(1)
                 .getResultStream()
                 .findFirst().orElse(null); 
 
